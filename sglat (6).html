@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Sglat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+
+@media only screen and (max-width: 600px) {
+      /* Apply styles for mobile devices */
+      .container {
+      max-width: 600px; /* Adjust this value to your desired maximum width */
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    p {
+      white-space: normal; /* Allow wrapping of text */
+      word-wrap: break-word; /* Break long words if necessary */
+    }
+    }
+
+    label{
+      text-align: right;
+    }
+input{
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.input-group-text {
+  white-space: break-spaces;!important
+}
+
+.activeCon{
+  background-color: rgba(225, 243, 252, 0.712);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+    text{
+        text-align: right;
+        
+    }
+    body{
+        padding: 20px;
+        direction: rtl;
+        text-align: right;
+    }
+    .content {
+      display: none;
+    }
+    .subContent {
+      display: none;
+    }
+    .miniSubContent {
+      display: none;
+    }
+    .show {
+      display: block;
+    }
+    #successText{
+        display: none;
+    }
+    button{
+        margin-bottom: 10px;
+    }
+    .input-group-append, .input-group-prepend {
+    display: -ms-flexbox;
+    display: flex;
+    align-content: flex-end;
+    flex-direction: column;
+}
+  </style>
+  <script>
+
+function markAsDone(boxId,boxTextId){
+var box = document.getElementById(boxId);
+var boxText = document.getElementById(boxTextId);
+
+if(box.checked){
+  boxText.style.textDecoration = "line-through";
+}else{
+  boxText.style.textDecoration = "solid";
+}
+
+}
+    // 
+    
+    // function toggleContent(buttonId, contentId) {
+    //   var button = document.getElementById(buttonId);
+    //   var content = document.getElementById(contentId);
+      
+    //   if (content.style.display === "none") {
+    //     content.style.display = "block";
+    //     // button.textContent = "Hide";
+    //   } else {
+    //     content.style.display = "none";
+    //     // button.textContent = "Show";
+    //   }
+
+    // }
+
+    function toggleContent(buttonId, contentId) {
+      var buttons = document.getElementsByClassName('btn');
+      var contents = document.getElementsByClassName('content');
+      var content = document.getElementById(contentId);
+      var button = document.getElementById(buttonId);
+
+      if(content.style.display === 'block'){
+        content.style.display = "none";
+        button.classList.remove("active");
+        content.classList.remove("activeCon");
+        return;
+      }else{
+        content.style.display = "block";
+        button.classList.add("active");
+        content.classList.add("activeCon");
+      }
+
+
+      // Hide all contents
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+      }
+      
+      // Show the selected content
+      var content = document.getElementById(contentId);
+      content.style.display = "block";
+      
+      // Update button styles
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].id === buttonId) {
+          buttons[i].classList.add("active");
+        } else {
+          buttons[i].classList.remove("active");
+        }
+      }
+    }
+
+
+
+    function showContent(buttonId,contentId) {
+      var contents = document.getElementsByClassName('subContent');
+      var buttons = document.getElementsByClassName('sub');
+      var content = document.getElementById(contentId);
+      var button = document.getElementById(buttonId);
+
+      if(content.style.display === 'block'){
+        content.style.display = "none";
+        button.classList.remove("active");
+
+        return;
+      }else{
+        content.style.display = "block";
+        button.classList.add("active");
+      }
+
+
+
+      // Hide all contents
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+      }
+
+      // Show the selected content
+      var content = document.getElementById(contentId);
+      content.style.display = "block";
+
+                  // Update button styles
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].id === buttonId) {
+          buttons[i].classList.add("active");
+        } else {
+          buttons[i].classList.remove("active");
+        }
+      }
+      
+    }
+
+    
+    function showMiniContent(buttonId,contentId) {
+      var contents = document.getElementsByClassName('miniSubContent');
+      var buttons = document.getElementsByClassName('minisub');
+      var content = document.getElementById(contentId);
+      var button = document.getElementById(buttonId);
+
+
+      if(content.style.display === 'block'){
+        content.style.display = "none";
+        button.classList.remove("active");
+
+        return;
+      }else{
+        content.style.display = "block";
+        button.classList.add("active");
+      }
+
+
+      // Hide all contents
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+      }
+
+      // Show the selected content
+      var content = document.getElementById(contentId);
+      content.style.display = "block";
+
+            // Update button styles
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].id === buttonId) {
+          buttons[i].classList.add("active");
+        } else {
+          buttons[i].classList.remove("active");
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  <h1>السجلات</h1>
+  
+  <!-- Ornic 3eyada Start -->
+  <div>
+    <button id="button1" class="btn btn-outline-primary" onclick="toggleContent('button1', 'content1')">أورنيك عياده</button>
+    <div id="content1" class="content">
+      <p>اورنيك العيادة بيتطلب تعليمات, لو المجند جيه يطلب اورنيك عيادة لازم بسأله دي تعليمات مين ؟ لو قال الظابط بعمله الاورنيك و اكتب فيه الاسم ( يفضل رباعي ) و بكتب كمان القوة بتاعته و اسم المستشفى ( م. الدراسة ) و بكتب التاريخ كمان و بسلمه الاورنيك و اعرفه انه يروح يمضي الاورنيك و يأكلشه من المدير و يجي تاني عشان يقوم نفسه من مكتب الدفتر
+        <br>
+        *اورنيك الدراسة بيتطلب اكلشيه المدير او من ينوب عنه, اورنيك الشروق بيتطلب حاجة زيادة و هي ختم النسر
+      </p>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="checkbox1" onchange="markAsDone('checkbox1','checkbox1text')">
+            <label for="checkbox1" id="checkbox1text">كتبت الاسم رباعي و القوة</label> <br>
+          </div> <br>
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="checkbox2"  onchange="markAsDone('checkbox2','checkbox2text')">
+            <label for="checkbox2" id="checkbox2text">كتبت المستشفى و التاريخ</label>
+        
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Ornic 3eyada End -->
+
+  <!-- darasa button Start -->
+  <div>
+      <!-- darasa button -->
+      <button id="button3" class="btn btn-outline-primary" onclick="toggleContent('button3', 'content3')">الدراسة</button>
+      <div id="content3" class="content">
+        <p>اللي بييجي من الدراسة بعتمد منه الآتي فقط</p>
+        <ul>
+          <li>علاج فقط</li>
+          <li>راحة لمدة يوم / 24 ساعة</li>
+          <li>راحة لمدة يومين / 48 ساعة *<mark style="font-weight: bold;">بضيفه في الراحات</mark></li>
+        </ul>
+        <input type="checkbox" id="checkbox3" onchange="markAsDone('checkbox3','checkbox3text')"/>
+        <label for="checkbox3" id="checkbox3text">ضيفته في الراحات</label>
+        <h6 style="text-decoration-line: underline">أي شئ آخر بحوله على مستشفى الشرطة بالشروق</h6>
+      </div>
+      <!-- darasa button -->
+
+  </div>
+  <!-- darasa button End -->
+
+
+
+<!-- shorok button Start -->
+  <div class="section2">
+      <!-- <input type="checkbox" id="checkbox2" />
+      <label for="checkbox2">Toggle Checkbox 2</label> -->
+
+      <!-- shorok button -->
+      <button id="button4" class="btn btn-outline-primary" onclick="toggleContent('button4', 'content4')">الشروق</button>
+      <div id="content4" class="content">
+        <p>اللي بييجي من الشروق بعتمد منه الآتي فقط</p>
+        <ul>
+          <li>علاج فقط</li>
+          <li>راحة لمدة يوم / 24 ساعة</li>
+          <li>راحة لمدة يومين / 48 ساعة *<mark style="font-weight: bold;">بضيفه في الراحات</mark></li>
+          <li>راحة لمدة طويلة أقصاها شهر *<mark style="font-weight: bold;">بضيفه في الراحات</mark></li>
+        </ul>
+        <input type="checkbox" id="checkbox4" onchange="markAsDone('checkbox4','checkbox4text')"/>
+        <label for="checkbox4" id="checkbox4text">ضيفته في الراحات</label>
+        <h6 style="text-decoration-line: underline">أي شئ آخر بحوله على القومسيون ( المجلس الطبي بمستشفى الشروق )و بجهزله ورق القومسيون</h6>
+
+      </div>
+      <!-- shorok button -->      
+  </div>
+  <!-- shorok button End -->
+
+
+
+
+<!-- qomsion papper button Start -->
+  <div>
+        <!-- qomsion papper button Start -->
+        <button id="qomsionpaper" class="btn btn-outline-primary" onclick="toggleContent('qomsionpaper', 'qomsionpapertext')">ورق القومسيون</button>
+        <div id="qomsionpapertext" class="content">
+          <p>ورق القومسيون كالآتي</p>
+          <ul>
+            <li>اورنيك عيادة لمستشفى الشروق بتاريخ بكرة <mark style="font-weight: bold;">*بتأكد ان العيادة بتاعته متاحة بكرة* </mark></li>
+            <li>بيان اجازات مرضية</li>
+            <li>التذكرة اللي اتشخص فيها</li>
+            <li>جواب مندوب</li>
+            <li>محضر اصابة <mark style="font-weight: bold;">لو التشخيص نفسية بعمل بداله تقرير سلوك</mark></li>
+            <li>صورة سجل</li>
+          </ul>
+        </div>
+        <!-- qomsion papper button End -->
+
+  </div>
+<!-- qomsion papper button Start -->
+
+
+
+
+
+
+<!-- qomsion cases button Start -->
+  <div>
+
+            <!-- qomsion cases button -->
+            <button id="qomsioncases" class="btn btn-outline-primary" onclick="toggleContent('qomsioncases', 'qomsioncasestext')">امتى اجهز ورق القومسيون؟!</button>
+            <div id="qomsioncasestext" class="content">
+              <p>امتى بجهز ورق القومسيون ؟!</p>
+              <ul>لو المجند 
+                <!-- <li>اورنيك عيادة لمستشفى الشروق بتاريخ بكرة <mark style="font-weight: bold;">*بتأكد ان العيادة بتاعته متاحة بكرة* </mark></li> -->
+                <li>اخد اجازة مرضية بالمنزل</li>
+                <li>اخد راحة طويلة اكثر من شهر</li>
+                <li>اخد منع من ( الخدمات / التمارين / الطوابير / حمل اشياء ثقيلة / حمل السلاح )</li>
+                <li>يعرض على لجنة الرفت الطبي</li>
+                <li>يحول الى المجلس الطبي بالرحاب</li>
+                <li>راجع من اجازة مرضية</li>
+                <li>متغيب لسبب طبي ( احتساب )
+                  <mark style="font-weight: bold;">*صيغة جواب المندوب بتختلف* </mark>
+                </li>
+              </ul>
+            </div>
+            <!-- qomsion cases button -->
+
+  </div>
+  <!-- qomsion cases button End -->
+
+
+
+
+  
+<!-- Qomsion Reply Button Start -->
+<div>
+
+  <!-- qomsion Reply button -->
+  <button id="qomsionReplys" class="btn btn-outline-primary" onclick="toggleContent('qomsionReplys', 'qomsionReplysText')">ردود القومسيون</button>
+  <div id="qomsionReplysText" class="content">
+    <p>هنشوف ردود القومسيون على كل حالة من حالاته و هنتعامل معاها ازاي</p>
+
+<!-- agaza mardy at home -->
+    <button id="agazaMardy" class="sub btn btn-outline-primary" onclick="showContent('agazaMardy','agazaMardyText')">اجازة مرضي</button>
+<!-- agaza mardy at home -->
+
+
+
+    <button id="LongRest" class="sub btn btn-outline-primary" onclick="showContent('LongRest','LongRestText')">راحة طويلة</button>
+
+    <button id="noServicesButton" class="sub btn btn-outline-primary" onclick="showContent('noServicesButton','noServicesText')">منع خدمات / طوابير .. الخ</button>
+
+    <button id="noGunsButton" class="sub btn btn-outline-primary" onclick="showContent('noGunsButton','noGunsText')">منع سلاح</button>
+
+    <button id="raftButton" class="sub btn btn-outline-primary" onclick="showContent('raftButton','raftText')">رفت طبي</button>
+
+
+
+<!-- agaza mardy at home -->
+
+    <div id="agazaMardyText" class="subContent">
+      <p>الاجازة المرضية بالمنزل</p>
+      <p>بيجيلي الرد عليها في صورة من الاتنين إما تأكيد على قرار التذكرة بالقلم الأحمر , أو بيسلمني كعب 
+        , و الكعب بيكون مكتوب فيه إما اجازة بالمنزل بنفس مدة التذكرة او اقل و إما بيكون مكتوب راحة بالسرية 
+      </p>
+
+
+
+      <!-- agaza at home -->
+      <button id="confirmAgaza" class="minisub btn btn-outline-primary" onclick="showMiniContent('confirmAgaza','confirmAgazaText')">اجازة بالمنزل</button>
+
+      <button id="agazaToRestButton" class="minisub btn btn-outline-primary" onclick="showMiniContent('agazaToRestButton','agazaToRest')">راحة بالسرية</button>
+
+  
+
+      <div id="confirmAgazaText" class="miniSubContent">
+        <p>
+          الكعب لما بيجيلي باجازة بالمنزل ببدأ اخد الاجراءات الآتية 
+          <a style="font-size: small;">
+            <mark>حط صح على اللي تعملها</mark>
+          </a>
+        </p>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="agazaStep1" onchange="markAsDone('agazaStep1','agazaStep1Text')">
+              <label for="agazastep1" id="agazaStep1Text">بكتبه في الاجازات المرضية</label> <br>
+            </div> <br>
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="agazaStep2"  onchange="markAsDone('agazaStep2','agazaStep2Text')">
+              <label for="agazaStep2" id="agazaStep2Text">بعمله تصريح اجازة مرضية بالمدة اللي اخدها</label>
+          
+          </div><br>
+
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="agazaStep3"  onchange="markAsDone('agazaStep3','agazaStep3Text')">
+            <label for="agazaStep3" id="agazaStep3Text">بشيل الكعب في سركي العيادة و لما بييجي التقرير بحطه في سجله</label>
+        
+        </div>
+
+          </div>
+          
+        </div>
+
+
+
+      </div>
+
+<!-- كتب راحة بالسرية بدل الاجازة بالمنزل -->
+        
+
+      <div id="agazaToRest" class="miniSubContent">
+        <p>
+          الكعب لما بيجيلي براحة بالسرية ببدأ اخد الاجراءات الآتية 
+          <a style="font-size: small;">
+            <mark>حط صح على اللي تعملها</mark>
+          </a>
+        </p>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="agaza2Rest" onchange="markAsDone('agaza2Rest','agaza2RestText')">
+              <label for="agaza2Rest" id="agaza2RestText">بكتبه في الراحات</label> <br>
+            </div> <br>
+
+          </div>
+          
+        </div>
+
+
+
+      </div>
+
+
+
+
+      
+    </div>
+<!-- agaza mardy at home -->
+
+
+
+
+<!-- Long Rest Text راحة طويلة -->
+
+<div id="LongRestText" class="subContent">
+  <p>الراحة الطويلة بالسرية</p>
+  <p>بيكون مكتوب مثلا : "راحة لمدة 3 أشهر و يعرض " طيب ده بعمل معاه ايه؟</p>
+
+  
+  <div id="longRestSubText" class="">
+    <p>
+       ببدأ اخد الاجراءات الآتية 
+      <a style="font-size: small;">
+        <mark>حط صح على اللي تعملها</mark>
+      </a>
+    </p>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="longRestS1" onchange="markAsDone('longRestS1','longRestS1Text')">
+          <label for="longRestS1" id="longRestS1Text">بتأكد ان مش مكتوب منع سلاح</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="longRestS2" onchange="markAsDone('longRestS2','longRestS2Text')">
+          <label for="longRestS2" id="longRestS2Text">بكتبه في الراحات</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="longRestS3" onchange="markAsDone('longRestS3','longRestS3Text')">
+          <label for="longRestS3" id="longRestS3Text">ببلغ مكتب الـ 43 ينزله من على القوة</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <!-- حاجة اضافية -->
+    
+    <p style="font-size: small;"><mark>ممكن كمان حاجة اضافية انك تعمل تذكير على الفون بتاريخ انتهاء الراحة</mark></p>
+
+
+  </div>
+
+<!-- Long Rest Text راحة طويلة -->
+
+
+</div>
+<!-- Long Rest Text end -->
+
+
+
+
+
+
+<!-- no Services Text -->
+
+
+
+<!-- no Services Text noServicesText منع خدمات-->
+
+<div id="noServicesText" class="subContent">
+  <p>منع من الخدمات او حمل اشياء ثقيلة او طوابير شاقة .. الخ</p>
+  <p>بيكون مكتوب مثلا : "منع من الخدمات / الطوابير الشاقة لمدة شهرين و يعرض " طيب ده بعمل معاه ايه؟</p>
+
+  
+  <div id="noServicesSubText" class="">
+    <p>
+       ببدأ اخد الاجراءات الآتية 
+      <a style="font-size: small;">
+        <mark>حط صح على اللي تعملها</mark>
+      </a>
+    </p>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noServicesS1" onchange="markAsDone('noServicesS1','noServicesS1Text')">
+          <label for="noServicesS1" id="noServicesS1Text">بتأكد ان مش مكتوب منع سلاح</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noServicesS2" onchange="markAsDone('noServicesS2','noServicesS2Text')">
+          <label for="noServicesS2" id="noServicesS2Text">بكتبه في الراحات</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noServicesS1" onchange="markAsDone('noServicesS1','noServicesS3Text')">
+          <label for="noServicesS1" id="noServicesS3Text">ببلغ مكتب الـ 43 ينزله من على القوة</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <!-- حاجة اضافية -->
+    
+    <p style="font-size: small;"><mark>ممكن كمان حاجة اضافية انك تعمل تذكير على الفون بتاريخ انتهاء الراحة</mark></p>
+
+
+  </div>
+
+<!--  Text منع خدمات -->
+
+
+</div>
+<!-- no Services Text -->
+
+
+<!-- no Services Text -->
+
+
+
+
+
+<!-- no Guns Text -->
+
+<!-- منع سلاح no Guns Text noGunsText-->
+
+<div id="noGunsText" class="subContent">
+  <p style="font-weight: 800;font-size: large; "><mark>يمنع من حمل السلاح</mark></p>
+  <p>بيكون مكتوب مثلا : "يمنع من حمل السلاح لمدة 3 اشهر و يعرض " ده بعمل معاه ايه ؟!</p>
+
+  
+  <div id="noGunsSubText" class="">
+    <p>
+       ببدأ اخد الاجراءات الآتية 
+      <a style="font-size: small;">
+        <mark>حط صح على اللي تعملها</mark>
+      </a>
+    </p>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noGunsS1" onchange="markAsDone('noGunsS1','noGunsS1Text')">
+          <label for="noGunsS1" id="noGunsS1Text">التأكد من قرار المنع و تصويره 3 نسخ</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noGunsS2" onchange="markAsDone('noGunsS2','noGunsS2Text')">
+          <label for="noGunsS2" id="noGunsS2Text">بضيفه في دفتر منع السلاح مع صورة من القرار </label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noGunsS3" onchange="markAsDone('noGunsS3','noGunsS3Text')">
+          <label for="noGunsS3" id="noGunsS3Text">ببلغ مكتب الـ 43 ينزله من على القوة.  <br> <mark>لو المنع طبي بينزل على قوة المحاكم و لو نفسي بينزل على قوة النظافة .</mark>
+          </label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noGunsS4" onchange="markAsDone('noGunsS4','noGunsS4Text')">
+          <label for="noGunsS4" id="noGunsS4Text">ببلغ الكمبيوتر يضيفه في منع السلاح .
+          </label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="noGunsS5" onchange="markAsDone('noGunsS5','noGunsS5Text')">
+          <label for="noGunsS5" id="noGunsS5Text" style="text-align: right;" >بسرك إخطار للتحريات (صورة من قرار المنع + صورة سجل المجند ) <br>و بسرك اخطار لشئون التدريب بصورة من القرار فقط و بخطرهم, اصل القرار بيرجع للسجل</label> <br>
+        </div> 
+      </div>
+    </div>
+
+
+    <!-- حاجة اضافية -->
+    
+    <p style="font-size: small;"><mark>ممكن كمان حاجة اضافية انك تعمل تذكير على الفون بتاريخ انتهاء الراحة</mark></p>
+
+
+  </div>
+
+<!-- Long Rest Text راحة طويلة -->
+
+
+</div>
+<!-- no Guns Text End-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- raft Text -->
+<!-- raft Text -->
+
+<!--  رفت طبي raft raftText-->
+
+<div id="raftText" class="subContent">
+  <p style="font-weight: 800;font-size: large; "><mark>رفت طبي</mark></p>
+  <p>بيكون مكتوب مثلا : "يحول الى لجنة الرفت الطبي للعرض, او يجيلي الكعب و متعلم على رفت و توصيف  " ده بعمل معاه ايه ؟!</p>
+  <mark style="background: #e77d19!important">**توصيف معناها منع سلاح , فـ ببدأ اعمل اجراءات منع السلاح و بعدها اجراءات الرفت</mark> <br>
+  
+  <div id="raftSubText" class="">
+    <p>
+       ببدأ اخد الاجراءات الآتية 
+      <a style="font-size: small;">
+        <mark>حط صح على اللي تعملها</mark>
+      </a>
+    </p>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="raftS1" onchange="markAsDone('raftS1','raftS1Text')">
+          <label for="raftS1" id="raftS1Text">بضيفه في الدفتر الطبي و كتابة "جاري تحديد موعد لجنة رفت"</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="raftS2" onchange="markAsDone('raftS2','raftS2Text')">
+          <label for="raftS2" id="raftS2Text">بعمله محضر و مذكرة و شهادة</label> <br>
+        </div> 
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for following text input" id="raftS3" onchange="markAsDone('raftS3','raftS3Text')">
+          <label for="raftS3" id="raftS3Text">بكتبه في دفتر المأموريات و احددله معاد تحديد لجنة
+          </label> <br>
+        </div> 
+      </div>
+    </div>
+
+
+
+
+    <!-- حاجة اضافية -->
+    
+    <!-- <p style="font-size: small;"><mark>ممكن كمان حاجة اضافية انك تعمل تذكير على الفون بتاريخ انتهاء الراحة</mark></p> -->
+
+
+  </div>
+
+
+
+</div>
+<!-- no Guns Text -->
+
+
+<!-- raft Text -->
+
+
+
+
+
+
+  </div>
+  <!-- qomsion Reply button -->
+
+</div>
+<!-- Qomsion Reply Button End -->
+
+
+
+
+
+
+
+
+<!-- lagna raft Start -->
+<div>
+
+  <!-- lagna raft  -->
+  <button id="lagnaRaft" class="btn btn-outline-primary" onclick="toggleContent('lagnaRaft', 'lagnaRaftText')">لجنة الرفت الطبي</button>
+  <div id="lagnaRaftText" class="content">
+    <p>بعد ما حددنا معاد العرض على اللجنة و المجند هيتعرض , بيحصل ايه؟</p>
+    <p><mark style="font-weight: bold;">المجند بيروح يتعرض بالسجل بتاعه و بيستلمه أمين شرطة على سركي.</mark>
+    المجند لما بيتعرض على اللجنة بيرجع من هناك بحاجة من التلاتة ( لائق , طلب آشعة او تحاليل , رفت طبي )
+    </p>
+
+
+
+
+
+      <!-- la2eq case --> <!-- la2eqCase -->
+      <button id="la2eqCaseButton" class="minisub btn btn-outline-primary" onclick="showMiniContent('la2eqCaseButton','la2eqCaseText')">لائق</button>
+      <!-- talabat case --><!-- talabatCase -->
+      <button id="talabatCaseButton" class="minisub btn btn-outline-primary" onclick="showMiniContent('talabatCaseButton','talabatCaseText')">طلب آشعة/تحاليل</button>
+      <!-- raft case --><!-- raftCase -->
+      <button id="raftCaseButton" class="minisub btn btn-outline-primary" onclick="showMiniContent('raftCaseButton','raftCaseText')">رفت طبي</button>
+
+  <!-- La2eq Case -->
+
+      <!-- اللجنة قرارها لائق -->
+      <div id="la2eqCaseText" class="miniSubContent">
+        <p>
+          اللجنة قررت ان المجند لائق
+          <a style="font-size: small;">
+            <mark>اتأكد من القرار هيكون مكتوب على السجل, حط صح على اللي تعملها</mark>
+          </a>
+        </p>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="la2eqCaseStep1" onchange="markAsDone('la2eqCaseStep1','la2eqCaseStep1Text')">
+              <label for="la2eqCasestep1" id="la2eqCaseStep1Text">ارفعه من منع السلاح في حالة انه كان مضاف <br> (يترفع من دفتر منع السلاح و الكمبيوتر و اخطر مكتب 43)</label>
+            </div> <br>
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="la2eqCaseStep2"  onchange="markAsDone('la2eqCaseStep2','la2eqCaseStep2Text')">
+              <label for="la2eqCaseStep2" id="la2eqCaseStep2Text">ارفعه من الدفتر الطبي</label>
+          
+          </div>
+
+
+          </div>
+          
+        </div>
+
+
+    </div>
+<!-- La2eq Case -->
+
+
+  <!-- talabat Case -->
+
+      <!-- اللجنة طلبت آشعة او تحاليل -->
+      <div id="talabatCaseText" class="miniSubContent">
+        <p>
+          اللجنة محتاجة آشعة او تحاليل للمجند, في الحالة دي المجند بيكون معاه تأشيرة بالآشعة / التحاليل المطلوبة
+          <a style="font-size: small;">
+            <mark>حط صح على اللي تعملها</mark>
+          </a><br>
+          <a style="font-size: medium;font-weight: 700;">
+            <mark>كل حاجة هتحصل هكتبها في الدفتر الطبي</mark>
+          </a>
+        </p>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="talabatCaseStep1" onchange="markAsDone('talabatCaseStep1','talabatCaseStep1Text')">
+              <label for="talabatCasestep1" id="talabatCaseStep1Text">بعمل جواب لمستشفى الشروق لاستخراج شيك</label>
+            </div> <br>
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="talabatCaseStep2"  onchange="markAsDone('talabatCaseStep2','talabatCaseStep2Text')">
+              <label for="talabatCaseStep2" id="talabatCaseStep2Text">بروح بالشيك للمستشفى العسكرية المذكورة لتحديد / عمل الآشعة / التحاليل</label>
+          
+          </div><br>
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="talabatCaseStep3"  onchange="markAsDone('talabatCaseStep3','talabatCaseStep3Text')">
+            <label for="talabatCaseStep3" id="talabatCaseStep3Text">بعد استلام النتائج بحدد موعد جديد للمجند للعرض على لجنة الرفت الطبي</label>
+        
+        </div>
+
+
+          </div>
+          
+        </div>
+
+
+
+  
+
+
+
+
+      
+    </div>
+<!-- talabat Case -->
+
+
+
+
+
+  <!-- raftCaseText Case -->
+
+      <!-- اللجنة طلبت آشعة او تحاليل -->
+      <div id="raftCaseText" class="miniSubContent">
+        <p>
+          اللجنة قررت ان المجند غير لائق طبيا و تم رفته 
+          <a style="font-size: small;">
+            <mark>حط صح على اللي تعملها</mark>
+          </a><br>
+          <a style="font-size: medium;font-weight: 700;">
+            <mark>المجند لما بيرجع من اللجنة بعمله تصريح خروج </mark>
+          </a><br>
+          <a style="font-size: large;font-weight: 900;">
+            <mark>ببدأ الاجراءات لما السجل بيجيلي من الادارة</mark>
+          </a><br>
+          <a style="font-size: large;font-weight: 900;">
+            <mark>بتأكد من القرار و ان المجند بصم على السجل</mark>
+          </a><br>
+        </p>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep1" onchange="markAsDone('raftCaseStep1','raftCaseStep1Text')">
+              <label for="raftCasestep1" id="raftCaseStep1Text">برفته في الدفتر الطبي و الرفت بانواعه </label>
+            </div> <br>
+            <div class="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep2"  onchange="markAsDone('raftCaseStep2','raftCaseStep2Text')">
+              <label for="raftCaseStep2" id="raftCaseStep2Text">ارفعه من منع السلاح لو كان موجود</label>
+          
+          </div><br>
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep3"  onchange="markAsDone('raftCaseStep3','raftCaseStep3Text')">
+            <label for="talabatCaseStep3" id="talabatCaseStep3Text">تقفيل السجل بمستخرج جزاءات و اورنيك 114 طـبـي</label>
+        
+          </div><br>
+
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep4"  onchange="markAsDone('raftCaseStep4','raftCaseStep4Text')">
+            <label for="talabatCaseStep4" id="talabatCaseStep4Text">اخطار الكمبيوتر و 43 و اليومية</label>
+          </div><br>
+
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep5"  onchange="markAsDone('raftCaseStep5','raftCaseStep5Text')">
+            <label for="talabatCaseStep5" id="talabatCaseStep5Text">عمل بند في الدفتر</label>
+          </div><br>
+
+
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep6"  onchange="markAsDone('raftCaseStep6','raftCaseStep6Text')">
+            <label for="talabatCaseStep6" id="talabatCaseStep6Text">بنسخة من القرار بعمل اخطار لمكتب الماليات و المخازن و يتسرك.</label>
+          </div><br>
+
+          <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" id="raftCaseStep7"  onchange="markAsDone('raftCaseStep7','raftCaseStep7Text')">
+            <label for="talabatCaseStep7" id="talabatCaseStep7Text" style="font-weight: bold;">بحط السجل في الورق اللي هيتختم و لما بيتختم بصوره من كل الاتجاهات</label>
+          </div><br>
+
+
+
+
+
+          </div>
+          
+        </div>
+
+
+
+  
+
+
+
+
+      
+    </div>
+<!-- talabat Case -->
+
+
+
+
+
+
+
+
+
+  </div>
+  <!-- lagna raft -->
+
+</div>
+<!-- lagna raft End -->
+
+
+
+
+
+
+
+
+
+</body>
+</html>
